@@ -1,8 +1,8 @@
 package com.example.demo.entity;
 
 public class Student {
-    private int id;
-    private String name;
+    int id;
+    String name;
 
     public Student() {
     }

@@ -2,22 +2,20 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yuan
-  Date: 1/22/2026
-  Time: 10:23 AM
+  Date: 1/23/2026
+  Time: 2:51 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home</title>
-    <c:import url="library.jsp"/>
+    <title>Input</title>
 </head>
 <body>
-${mess}
-Home
-<div class="container mt-4">
-    <a href="student" class="btn btn-success"> Tới trang quản lý</a>
-</div>
-
+<form method="get" action="/home/calc" >
+    <input type="number" name="money" placeholder="Nhập số tiền (USD)">
+    <button> Chuyển đổi</button>
+</form>
+<p> ${result} VND </p>
 </body>
 </html>

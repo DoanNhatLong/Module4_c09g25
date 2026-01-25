@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yuan
-  Date: 1/22/2026
-  Time: 10:23 AM
+  Date: 1/23/2026
+  Time: 2:55 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,10 +13,11 @@
     <c:import url="library.jsp"/>
 </head>
 <body>
-${mess}
-Home
-<div class="container mt-4">
-    <a href="student" class="btn btn-success"> Tới trang quản lý</a>
+<div class="container d-flex flex-column gap-3">
+    <a href="/home/calc"> Chuyển đổi tiền tệ</a>
+    <a href="/home/trans"> Từ điển</a>
+    <a href="/home/sandwich"> Sandwich</a>
+    <a href="/home/computer"> Máy tính</a>
 </div>
 
 </body>

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class StudentService implements IStudentService {
     @Autowired
-    private IStudentRepository studentRepository;
+    IStudentRepository studentRepository;
     @Override
     public List<Student> findAll() {
         return studentRepository.findAll();

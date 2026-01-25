@@ -15,7 +15,7 @@ import java.util.Arrays;
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
-    private IStudentService studentService;
+    IStudentService studentService;
 
     @GetMapping()
     public String showList(Model model) {

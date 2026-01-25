@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yuan
@@ -10,14 +9,9 @@
 <html>
 <head>
     <title>Home</title>
-    <c:import url="library.jsp"/>
 </head>
 <body>
 ${mess}
 Home
-<div class="container mt-4">
-    <a href="student" class="btn btn-success"> Tới trang quản lý</a>
-</div>
-
 </body>
 </html>
