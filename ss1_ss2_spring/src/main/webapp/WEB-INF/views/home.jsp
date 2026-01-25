@@ -18,6 +18,7 @@
     <a href="/home/trans"> Từ điển</a>
     <a href="/home/sandwich"> Sandwich</a>
     <a href="/home/computer"> Máy tính</a>
+    <a href="/home/email"> Email</a>
 </div>
 
 </body>
