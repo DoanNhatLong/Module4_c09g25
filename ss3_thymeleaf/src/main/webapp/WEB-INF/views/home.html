@@ -25,7 +25,12 @@
     <tr th:each="product:${products}">
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
-        <td th:text="${product.id}"></td>
+        <td th:switch="${product.type}">
+            <span th:case="1">Điện tử</span>
+            <span th:case="2">Gia dụng</span>
+            <span th:case="3">Nội thất</span>
+
+        </td>
         <td th:text="${product.price}"></td>
         <td>
             <a th:href="@{/home/delete(id=${product.id})}">
