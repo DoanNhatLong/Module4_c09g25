@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<p th:text="Test"></p>
+<p th:text="${session.type}"></p>
+<p th:text="${products}"></p>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Loại</th>
+        <th>Gía</th>
+        <th>Xóa</th>
+        <th>Xem chi tiết</th>
+        <th>Chỉnh sửa</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="product:${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.price}"></td>
+        <td>
+            <a th:href="@{/home/delete(id=${product.id})}">
+                <button> Xóa</button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/home/detail(id=${product.id})}">
+                <button> Xem chi tiết</button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/home/edit(id=${product.id})}">
+                <button> Chỉnh sửa</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="home/add"> Thêm mới</a>
+
+</body>
+</html>

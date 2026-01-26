@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+<form th:action="@{/home/save}" method="get" th:object="${product}">
+    <input type="number" th:field="*{id}" placeholder="Nhập id">
+    <input type="text" th:field="*{name}" placeholder="Nhập tên">
+    <select th:field="*{type}">
+        <option th:each="t,stat: ${session.type}"
+                th:value="${stat.index + 1}"
+                th:text="${t}">
+        </option>
+    </select>
+    <input type="number" th:field="*{price}" placeholder="Nhập giá tiền">
+    <button> Thêm mới</button>
+</form>
+</body>
+</html>
