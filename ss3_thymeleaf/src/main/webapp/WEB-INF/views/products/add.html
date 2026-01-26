@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Add</title>
+    <th:block th:insert="~{/layout::library}">
+
+    </th:block>
 </head>
 <body>
 <form th:action="@{/home/save}" method="get" th:object="${product}">
