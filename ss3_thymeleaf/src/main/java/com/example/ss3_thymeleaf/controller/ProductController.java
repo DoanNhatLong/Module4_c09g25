@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,21 +32,27 @@ public class ProductController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam ("id") int id, Model model){
+    public String delete(@RequestParam ("id") int id, RedirectAttributes redirectAttributes){
         boolean flag =  productService.deleteByID(id);
-        model.addAttribute("mess",flag?"Xóa thành công":"Xóa thất bại");
+        redirectAttributes.addFlashAttribute("message",
+                flag ? "Xóa thành công" : "Xóa thất bại"
+        );
         return "redirect:/home";
     }
 
     @GetMapping("/add")
     public String add(Model model){
         model.addAttribute("product", new Product());
+
         return "products/add";
     }
 
     @GetMapping("/save")
-    public String save(@ ModelAttribute Product product){
+    public String save(@ ModelAttribute Product product, RedirectAttributes redirectAttributes){
         productService.add(product);
+        redirectAttributes.addFlashAttribute("message",
+                "Thêm mới thành công"
+        );
         return "redirect:/home";
     }
 

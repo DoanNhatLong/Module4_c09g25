@@ -14,7 +14,7 @@ public class ProductRepository implements IProductRepository {
         productList.add(new Product(1, "Bàn", 2, 1000));
         productList.add(new Product(2, "Chuôt", 1, 2000));
         productList.add(new Product(3, "Ghế", 3, 10030));
-        productList.add(new Product(3, "Lap", 1, 10004));
+        productList.add(new Product(4, "Lap", 1, 10004));
     }
 
     @Override
