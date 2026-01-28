@@ -21,7 +21,7 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th>
+        <th>STT</th>
         <th>Tên</th>
         <th>Loại</th>
         <th>Gía</th>
@@ -32,8 +32,8 @@
     </thead>
 
     <tbody>
-    <tr th:each="product:${products}">
-        <td th:text="${product.id}"></td>
+    <tr th:each="product, status:${products}">
+        <td th:text="${status.count}"></td>
         <td th:text="${product.name}"></td>
         <td th:switch="${product.type}">
             <span th:case="1">Điện tử</span>
