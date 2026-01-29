@@ -3,6 +3,7 @@ package com.example.ss5_orm.config;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -124,6 +125,8 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
+
+
 
 
 }

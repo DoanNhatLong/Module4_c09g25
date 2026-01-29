@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout/layout :: library"></th:block>
+    <script th:src="@{/js/blog.js}"></script>
+
+</head>
+<body>
+<div th:replace="layout/modal :: modal('commonModal')"></div>
+
+<h2 class="text-center"> Danh sách Blog</h2>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>STT</td>
+            <td>Tittle</td>
+            <td>Content</td>
+            <td>Category</td>
+            <td>Xóa</td>
+            <td>Xem chi tiết</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog,status:${blogs}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${blog.title()}"></td>
+            <td th:text="${blog.content()}"></td>
+            <td th:text="${blog.categoryName()}"></td>
+            <td>
+                <button class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        th:data-id="${blog.id}"
+                        th:data-title="${blog.title}"
+                        onclick="setDeleteInfo(this)">
+                    Xóa
+                </button>
+
+            </td>
+            <td>
+                <button class="btn btn-info"
+                        data-bs-toggle="modal"
+                        data-bs-target="#detailModal"
+                        th:data-title="${blog.title()}"
+                        th:data-content="${blog.content()}"
+                        th:data-category="${blog.categoryName()}"
+                        onclick="showDetail(this)">
+                    Xem
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="detailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <p id="modalContent"></p>
+                <p>
+                    Category:
+                    <strong id="modalCategory"></strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="get" th:action="@{/blogs/delete}">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Xác nhận xóa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="deleteId">
+
+                    <p>
+                        Bạn có chắc muốn xóa:
+                        <strong id="deleteTitle"></strong>
+                        ?
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Hủy
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        Xóa
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function showDetail(btn) {
+        document.getElementById("modalTitle").innerText = btn.dataset.title;
+        document.getElementById("modalContent").innerText = btn.dataset.content;
+        document.getElementById("modalCategory").innerText = btn.dataset.category;
+    }
+
+
+    function setDeleteInfo(btn) {
+        document.getElementById("deleteId").value = btn.dataset.id;
+        document.getElementById("deleteTitle").innerText = btn.dataset.title;
+    }
+
+
+</script>
+
+
+</body>
+</html>
