@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+<p th:text="${category}"></p>
+
+<div class="container">
+    <form method="get" th:action="@{/blogs/save}" th:object="${blog}">
+        <input type="text" th:field="*{title}" placeholder="Nhập tittle">
+        <textarea th:field="*{content}" placeholder="Nhập content"></textarea>
+        <select th:field="*{category}">
+            <option th:each="category:${category}"
+                    th:value="${category.id}"
+                    th:text="${category.name}">
+            </option>
+        </select>
+
+
+        <button> Thêm mới</button>
+    </form>
+</div>
+
+</body>
+</html>

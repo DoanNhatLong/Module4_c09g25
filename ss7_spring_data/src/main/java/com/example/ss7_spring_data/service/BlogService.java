@@ -1,8 +1,13 @@
 package com.example.ss7_spring_data.service;
 
+import com.example.ss7_spring_data.dto.SearchDto;
 import com.example.ss7_spring_data.dto.ViewDto;
+import com.example.ss7_spring_data.entity.Blog;
 import com.example.ss7_spring_data.repository.iBlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +18,8 @@ public class BlogService implements IBlogService {
     private iBlogRepository blogRepository;
 
     @Override
-    public List<ViewDto> findAllView() {
-        return blogRepository.findAllView();
+    public Page<ViewDto> findAllView(Pageable pageable) {
+        return blogRepository.findAllView(pageable);
     }
 
     @Override
@@ -25,6 +30,21 @@ public class BlogService implements IBlogService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public void add(Blog blog) {
+        blogRepository.save(blog);
+    }
+
+    @Override
+    public Page<ViewDto> search(SearchDto searchDto) {
+        return blogRepository.search(
+                PageRequest.of(0, 3),
+                searchDto.getTittle(),
+                searchDto.getContent(),
+                searchDto.getIdCategory()
+        );
     }
 
 
