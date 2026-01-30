@@ -13,5 +13,5 @@ public interface IBlogService {
     boolean delete(int id);
     void add(Blog blog);
 
-    Page<ViewDto> search(SearchDto searchDto);
+    Page<ViewDto> search(SearchDto searchDto, Pageable pageable);
 }

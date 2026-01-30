@@ -38,12 +38,12 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Page<ViewDto> search(SearchDto searchDto) {
+    public Page<ViewDto> search(SearchDto searchDto, Pageable pageable) {
         return blogRepository.search(
-                PageRequest.of(0, 3),
                 searchDto.getTittle(),
                 searchDto.getContent(),
-                searchDto.getIdCategory()
+                searchDto.getIdCategory(),
+                pageable
         );
     }
 

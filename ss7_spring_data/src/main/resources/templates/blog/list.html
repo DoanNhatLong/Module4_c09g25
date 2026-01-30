@@ -14,7 +14,7 @@
 <h2 class="text-center"> Danh sách Blog</h2>
 
 <div class="container">
-    <form action="/blogs/search" method="get" th:object="${searchDto}">
+    <form action="/blogs" method="get" th:object="${searchDto}">
 
         <input type="text"
                name="tittle"
@@ -62,7 +62,7 @@
         </thead>
         <tbody>
         <tr th:each="blog,status:${blogs}">
-            <td th:text="${status.count}"></td>
+            <td th:text="${currentPage * size + status.index + 1}"></td>
             <td th:text="${blog.title()}"></td>
             <td th:text="${blog.content()}"></td>
             <td th:text="${blog.categoryName()}"></td>
@@ -94,16 +94,26 @@
     </table>
 
     <div class="text-end">
-        <a th:if="${currentPage > 1}"
-           th:href="@{/blogs(page=${currentPage}-2, size=${size})}">
+        <a th:if="${hasPrev}"
+           th:href="@{/blogs(page=${currentPage - 1}, size=${size})}">
             Prev
         </a>
 
-        <a th:if="${currentPage < totalPages}"
-           th:href="@{/blogs(page=${currentPage}, size=${size})}">
+        <a th:if="${hasNext}"
+           th:href="@{/blogs(page=${currentPage + 1 }, size=${size})}">
             Next
         </a>
-        Trang <span th:text="${currentPage}"></span>
+
+        <!--        <a th:if="${currentPage > 1}"-->
+<!--           th:href="@{/blogs(page=${currentPage}-2, size=${size})}">-->
+<!--            Prev-->
+<!--        </a>-->
+
+<!--        <a th:if="${currentPage < totalPages}"-->
+<!--           th:href="@{/blogs(page=${currentPage}, size=${size})}">-->
+<!--            Next-->
+<!--        </a>-->
+        Trang <span th:text="${currentPage+1}"></span>
         /
         <span th:text="${totalPages}"></span>
     </div>

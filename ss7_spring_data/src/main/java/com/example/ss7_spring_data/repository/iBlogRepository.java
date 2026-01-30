@@ -36,12 +36,12 @@ public interface iBlogRepository extends JpaRepository<Blog, Integer> {
         where
             (:title is null or b.title like concat('%', :title, '%'))
         and (:content is null or b.content like concat('%', :content, '%'))
-        and (:idCategory is null or c.id = :idCategory)
+        and (:categoryId is null or c.id = :categoryId)
     """)
     Page<ViewDto> search(
-            Pageable pageable,
             @Param("title") String title,
             @Param("content") String content,
-            @Param("idCategory") Integer idCategory
+            @Param("categoryId") Integer categoryId,
+            Pageable pageable
     );
 }

@@ -39,15 +39,18 @@ public class BlogController {
     }
     @GetMapping()
     public String getAllBlogs(
+            @ModelAttribute SearchDto searchDto,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size,
             Model model) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<ViewDto> blogPage = blogService.findAllView(pageable);
+        Page<ViewDto> blogPage = blogService.search(searchDto, pageable);
         model.addAttribute("blogs", blogPage.getContent());
-        model.addAttribute("currentPage", blogPage.getNumber() + 1);
+        model.addAttribute("currentPage", blogPage.getNumber());
         model.addAttribute("totalPages", blogPage.getTotalPages());
         model.addAttribute("size", size);
+        model.addAttribute("hasNext", blogPage.hasNext());
+        model.addAttribute("hasPrev", blogPage.hasPrevious());
         return "/blog/list";
     }
 
@@ -74,14 +77,15 @@ public class BlogController {
         return "redirect:/blogs";
     }
 
-    @GetMapping("search")
-    public String search(
-            @ModelAttribute SearchDto searchDto,
-            Model model
-    ){
-        Page<ViewDto> blogs = blogService.search(searchDto);
-        model.addAttribute("blogs", blogs);
-        model.addAttribute("searchDto", searchDto);
-        return "/blog/list";
-    }
+//    @GetMapping("search")
+//    public String search(
+//            Pageable pageable,
+//            @ModelAttribute SearchDto searchDto,
+//            Model model
+//    ){
+//        Page<ViewDto> blogs = blogService.search(searchDto, pageable);
+//        model.addAttribute("blogs", blogs);
+//        model.addAttribute("searchDto", searchDto);
+//        return "/blog/list";
+//    }
 }
