@@ -2,6 +2,7 @@ package com.example.ss7_spring_data.repository;
 
 import com.example.ss7_spring_data.entity.Blog;
 import com.example.ss7_spring_data.dto.ViewDto;
+import com.example.ss7_spring_data.entity.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Repository
 public interface iBlogRepository extends JpaRepository<Blog, Integer> {
+    List<Blog> findBlogsByContentAndCategoryAndTitleContainingIgnoreCase(String content, Category category, String title);
+
     @Query("""
                 select new com.example.ss7_spring_data.dto.ViewDto(
                     b.id,

@@ -12,8 +12,11 @@
 <div th:replace="layout/toast :: toast(${message})"></div>
 
 <h2 class="text-center"> Danh sách Blog</h2>
+<div class="container text-begin"  >
+<a th:href="@{/blogs}" class="btn btn-success"> Home</a>
+</div>
 
-<div class="container">
+<div class="container text-end">
     <form action="/blogs" method="get" th:object="${searchDto}">
 
         <input type="text"
