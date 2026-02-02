@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List</title>
+    <th:block th:replace="layout/layout :: library"></th:block>
 </head>
 <body>
+<div th:replace="layout/toast :: toast(${message})"></div>
+<a class="btn btn-success" th:href="@{/song/add}">Add</a>
 
 </body>
 </html>
