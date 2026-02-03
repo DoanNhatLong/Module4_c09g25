@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <th:block th:replace="layout/layout :: library"></th:block>
+</head>
+<body>
+<div th:replace="layout/toast :: toast(${message})"></div>
+<div class="container" >
+    <table class="table table-stripped">
+        <thead>
+        <tr>
+            <td>Tên</td>
+            <td>Số lượng</td>
+            <td>Mượn</td>
+            <td>Trả sách</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book:${books}">
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.quantity}"></td>
+            <td>
+                <a th:href="@{/book/borrow/{id}(id=${book.id})}" class="btn btn-primary"> Mượn</a>
+            </td>
+            <td>
+                <a th:href="@{/book/return/{id}(id=${book.id})}" class="btn btn-primary"> Trả sách</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
