@@ -47,5 +47,10 @@ public class BlogService implements IBlogService {
         );
     }
 
+    @Override
+    public Page<ViewDto> searchByCategoryId(Integer categoryId, Pageable pageable) {
+        return blogRepository.searchByCategoryId(categoryId, pageable);
+    }
+
 
 }

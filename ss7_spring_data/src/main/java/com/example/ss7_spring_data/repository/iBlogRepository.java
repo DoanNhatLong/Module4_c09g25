@@ -49,4 +49,6 @@ public interface iBlogRepository extends JpaRepository<Blog, Integer> {
             @Param("categoryId") Integer categoryId,
             Pageable pageable
     );
+
+    Page<ViewDto> searchByCategoryId(Integer categoryId, Pageable pageable);
 }

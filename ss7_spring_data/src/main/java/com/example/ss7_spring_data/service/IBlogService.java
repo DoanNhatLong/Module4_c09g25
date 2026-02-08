@@ -14,4 +14,6 @@ public interface IBlogService {
     void add(Blog blog);
 
     Page<ViewDto> search(SearchDto searchDto, Pageable pageable);
+
+    Page<ViewDto> searchByCategoryId(Integer categoryId, Pageable pageable);
 }

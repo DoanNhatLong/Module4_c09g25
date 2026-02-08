@@ -76,16 +76,5 @@ public class BlogController {
         redirectAttributes.addFlashAttribute("message","Thêm mới thành công");
         return "redirect:/blogs";
     }
-
-//    @GetMapping("search")
-//    public String search(
-//            Pageable pageable,
-//            @ModelAttribute SearchDto searchDto,
-//            Model model
-//    ){
-//        Page<ViewDto> blogs = blogService.search(searchDto, pageable);
-//        model.addAttribute("blogs", blogs);
-//        model.addAttribute("searchDto", searchDto);
-//        return "/blog/list";
-//    }
+    
 }
