@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -42,6 +43,19 @@ public class BookController {
 
     @GetMapping("return")
     public String giveBack() {
-        return "redirect:/books/list";
+        return "books/check";
+    }
+
+    @GetMapping("check")
+    public String check(@RequestParam("code") String code, Model model) {
+        CodeBook codeBook =
+                codeBookService.findAll().stream()
+                        .filter(c -> c.getCode().equals(code))
+                        .findFirst()
+                        .orElseThrow(() -> new RuntimeException("Không tìm thấy code"));
+        Book book = bookService.findById(codeBook.getBook().getId());
+        book.setQuantity(book.getQuantity()+1);
+        bookService.save(book);
+        return "redirect:/book";
     }
 }

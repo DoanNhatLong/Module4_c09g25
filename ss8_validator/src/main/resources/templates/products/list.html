@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <th:block th:replace="layout/layout :: library"></th:block>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Xem chi tiết</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="flower : ${flowers}">
+            <td th:text="${flower.id}"></td>
+            <td th:text="${flower.name}"></td>
+            <td th:text="${flower.price}"></td>
+            <td>
+                <a th:href="@{/product/detail/{id}(id=${flower.id})}" class="btn btn-primary">Xem chi tiết</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/product/cart}" class="btn btn-warning" > Go cart</a>
+</div>
+</body>
+</html>

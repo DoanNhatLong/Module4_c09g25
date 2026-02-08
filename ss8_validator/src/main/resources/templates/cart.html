@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <th:block th:replace="layout/layout :: library"></th:block>
+</head>
+<body>
+<div class="container">
+    <a th:href="@{/product}"  class="btn btn-success"> Quay lại</a>
+    <table>
+        <tr>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Hành động</th>
+        </tr>
+
+        <tr th:each="item : ${cart.items.values()}">
+            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.product.price}"></td>
+
+            <td>
+                <form th:action="@{/cart/update}" method="post">
+                    <input type="hidden" name="id" th:value="${item.product.id}">
+                    <input type="number" name="quantity"
+                           th:value="${item.quantity}" min="0">
+                    <button type="submit">Cập nhật</button>
+                </form>
+            </td>
+
+            <td>
+                <a th:href="@{/cart/remove/{id}(id=${item.product.id})}">
+                    Xóa
+                </a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/cart/checkout}">Thanh toán</a>
+
+</div>
+
+
+</body>
+</html>

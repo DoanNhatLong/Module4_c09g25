@@ -31,6 +31,16 @@ public class BookService implements IBookService {
         }
     }
 
+    @Override
+    public Book findById(Long id) {
+        return bookRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
+
 
     private String generateCode() {
         int code = 10000 + new Random().nextInt(90000);

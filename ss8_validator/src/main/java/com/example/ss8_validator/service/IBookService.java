@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IBookService {
     List<Book> findAll();
-
-
     String borrow(Long id);
+    Book findById(Long id);
+    void save(Book book);
 }
