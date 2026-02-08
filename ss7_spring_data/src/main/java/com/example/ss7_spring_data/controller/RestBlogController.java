@@ -1,6 +1,7 @@
 package com.example.ss7_spring_data.controller;
 
 import com.example.ss7_spring_data.dto.ViewDto;
+import com.example.ss7_spring_data.entity.Blog;
 import com.example.ss7_spring_data.entity.Category;
 import com.example.ss7_spring_data.service.IBlogService;
 import com.example.ss7_spring_data.service.ICategoryService;
@@ -22,6 +23,14 @@ public class RestBlogController {
     @Autowired
     private ICategoryService categoryService;
 
+    @GetMapping("show")
+    public ResponseEntity<List<Blog>> show(){
+        List<Blog> blogs = blogService.findAll();
+        if (blogs.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(blogs);
+    }
     @GetMapping()
     public Page<ViewDto> getAllBlogs(
             @RequestParam(defaultValue = "0") int page,

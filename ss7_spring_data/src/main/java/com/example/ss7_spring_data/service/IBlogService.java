@@ -16,4 +16,5 @@ public interface IBlogService {
     Page<ViewDto> search(SearchDto searchDto, Pageable pageable);
 
     Page<ViewDto> searchByCategoryId(Integer categoryId, Pageable pageable);
+    List<Blog> findAll();
 }
